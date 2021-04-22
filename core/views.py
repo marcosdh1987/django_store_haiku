@@ -347,8 +347,23 @@ class PaymentView(View):
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 3
+    paginate_by = 5
     template_name = "home.html"
+
+class JabonesView(ListView):
+    model = Item
+    paginate_by = 5
+    template_name = "jabones.html"
+
+class CremasView(ListView):
+    model = Item
+    paginate_by = 5
+    template_name = "cremas.html"
+
+class ShampooView(ListView):
+    model = Item
+    paginate_by = 5
+    template_name = "shampoo.html"
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
