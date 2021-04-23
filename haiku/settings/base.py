@@ -80,3 +80,10 @@ LOGIN_REDIRECT_URL = '/'
 # CRISPY FORMS
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'haiku.cosmeticanatural@gmail.com'
+EMAIL_HOST_PASSWORD = 'haiku_prueba'
+EMAIL_USE_TLS = True
