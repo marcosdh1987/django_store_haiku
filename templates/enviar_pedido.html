@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container wow fadeIn">
+    <h2 class="my-5 h2 text-center">Orden de Pedido</h2>
+    <div class="row">
+
+        {% include "order_snippet.html" %}
+
+    </div>
+</div>
+<form method="POST" class="card-body"></form>
+<div class="container wow fadeIn">
+    <div class="row text-center">
+        <a class='btn btn-warning float-right ml-2' href='/enviar_pedido/'>Continuar de shopping</a>
+        <a class='btn btn-primary float-right' href='/'>Enviar Pedido</a>
+    </div>
+</div>
+</form>
+
+
+{% endblock content %}

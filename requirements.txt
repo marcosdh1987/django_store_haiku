@@ -20,3 +20,8 @@ requests-oauthlib==1.2.0
 sqlparse==0.2.4
 stripe==2.27.0
 urllib3==1.24.2
+
+# apps for mail
+
+django-extensions==1.9.8
+django-widget-tweaks==1.4.1

@@ -1,6 +1,8 @@
 import random
 import string
 
+from django.template.loader import render_to_string
+
 import stripe
 from django.conf import settings
 from django.contrib import messages
@@ -8,14 +10,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
+from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView, View, TemplateView
 
-from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
+
+from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm, ContactForm
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 
 def create_ref_code():
@@ -35,6 +40,7 @@ def is_valid_form(values):
         if field == '':
             valid = False
     return valid
+
 
 
 class CheckoutView(View):
@@ -202,8 +208,55 @@ class CheckoutView(View):
                         self.request, "Invalid payment option selected")
                     return redirect('core:checkout')
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "Usted no tiene una orden activa")
             return redirect("core:order-summary")
+
+class PedidoView(TemplateView):
+
+    template_name = 'enviar_mail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        form = ContactForm()
+        context = {
+            'form': form,
+            'contact_form': ContactForm(),
+            'order': order,
+            'DISPLAY_COUPON_FORM': True
+        }    
+        return context
+
+    def post(self, request, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        body = render_to_string(
+            'email_content.html', {
+                'name': name,
+                'email': email,
+                'message': message,
+            },
+        )
+
+        email_message = EmailMessage(
+            subject='Mensaje de usuario',
+            body=body,
+            from_email=email,
+            to=[email,'haiku.cosmeticanatural@gmail.com'],
+        )
+        email_message.content_subtype = 'html'
+        email_message.send()
+        
+        order.ordered = True
+        order.ref_code = create_ref_code()
+        order.save()
+
+        messages.success(self.request, "Su pedido fue procesado exitosamente!")
+        return redirect("/")
 
 
 class PaymentView(View):
@@ -213,7 +266,7 @@ class PaymentView(View):
             context = {
                 'order': order,
                 'DISPLAY_COUPON_FORM': False,
-                'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUBLIC_KEY
+                'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY
             }
             userprofile = self.request.user.userprofile
             if userprofile.one_click_purchasing:
@@ -303,7 +356,7 @@ class PaymentView(View):
             except stripe.error.CardError as e:
                 body = e.json_body
                 err = body.get('error', {})
-                messages.warning(self.request, f"{err.get('message')}")
+                messages.warning(self.request, "{err.get('message')}")
                 return redirect("/")
 
             except stripe.error.RateLimitError as e:
@@ -347,22 +400,23 @@ class PaymentView(View):
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 5
+    paginate_by = 10
     template_name = "home.html"
 
 class JabonesView(ListView):
     model = Item
-    paginate_by = 5
+    paginate_by = 10
     template_name = "jabones.html"
 
 class CremasView(ListView):
     model = Item
-    paginate_by = 5
+    paginate_by = 10
     template_name = "cremas.html"
+
 
 class ShampooView(ListView):
     model = Item
-    paginate_by = 5
+    paginate_by = 10
     template_name = "shampoo.html"
 
 
@@ -375,7 +429,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
             }
             return render(self.request, 'order_summary.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "Usted no tiene una orden activa")
             return redirect("/")
 
 
