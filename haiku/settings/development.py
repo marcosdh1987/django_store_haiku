@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1','192.168.0.51']
+ALLOWED_HOSTS = ['127.0.0.1','192.168.0.5']
 
 
 INSTALLED_APPS += [
