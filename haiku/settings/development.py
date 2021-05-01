@@ -44,5 +44,5 @@ DATABASES = {
     }
 }
 
-STRIPE_PUBLIC_KEY = config('STRIPE_TEST_PUBLIC_KEY')
-STRIPE_SECRET_KEY = config('STRIPE_TEST_SECRET_KEY')
+STRIPE_PUBLIC_KEY = '0ff1vl2nj4-#stv^#b0=18dy%)5+kat6j7fz)h$e0$#m8cyh4u'
+STRIPE_SECRET_KEY = '0ff1vl2nj4-#stv^#b0=18dy%)5+kat6j7fz)h$e0$#m8cyh4u'
