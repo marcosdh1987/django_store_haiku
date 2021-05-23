@@ -55,3 +55,6 @@ python manage.py runserver
 
 ---
 
+note: to add admin user 
+python manage.py createsuperuser
+
