@@ -44,6 +44,7 @@ Then install the project dependencies with
 ```
 pip install -r requirements.txt
 ```
+next python manage.py migrate
 
 Now you can run the project with this command
 
