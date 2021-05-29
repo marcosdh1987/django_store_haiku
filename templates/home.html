@@ -62,7 +62,7 @@
 
             <div class="view overlay">
               {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
-                class="card-img-top" {% endcomment %} <img src="{{ item.image.url }}" height="300" class="card-img-top">
+                class="card-img-top" {% endcomment %} <img class="object-fit_contain" src="{{ item.image.url }}">
               <a href="{{ item.get_absolute_url }}">
                 <div class="mask rgba-white-slight"></div>
               </a>
