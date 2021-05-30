@@ -15,6 +15,11 @@ To get this project up and running you should start by having Python installed o
 ```
 pip install virtualenv
 
+for windows:
+python -m venv env
+./Scripts/activate
+
+
 for ubuntu:
 
 sudo apt-get install python3-pip
