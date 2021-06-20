@@ -9,5 +9,5 @@
   "files.exclude": {
     "**/*.pyc": true
   },
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "yapf"
 }
