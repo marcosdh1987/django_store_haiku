@@ -29,6 +29,8 @@ jobs:
 
     - name: Install dependencies
       run: pip install -r requirements.txt
+    - name: Uninstall wrong dependencies
+      run: pip uninstall typing
     - name: make migrations  
       run: python manage.py makemigrations
     - name: migrate
