@@ -15,6 +15,11 @@ To get this project up and running you should start by having Python installed o
 ```
 pip install virtualenv
 
+for windows:
+python -m venv env
+./Scripts/activate
+
+
 for ubuntu:
 
 sudo apt-get install python3-pip
@@ -44,6 +49,7 @@ Then install the project dependencies with
 ```
 pip install -r requirements.txt
 ```
+next python manage.py migrate
 
 Now you can run the project with this command
 
@@ -54,4 +60,7 @@ python manage.py runserver
 **Note** if you want payments to work you will need to enter your own Stripe API keys into the `.env` file in the settings files.
 
 ---
+
+note: to add admin user 
+python manage.py createsuperuser
 

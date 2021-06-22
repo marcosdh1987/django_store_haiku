@@ -1,0 +1,2 @@
+docker build --tag django-haiku .
+docker run --publish 8000:8000 django-haiku
