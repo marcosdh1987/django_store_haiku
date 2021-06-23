@@ -22,6 +22,8 @@ sqlparse==0.2.4
 stripe==2.27.0
 urllib3==1.24.2
 
+psycopg2>=2.7,<3.0
+
 # apps for mail
 
 django-extensions==1.9.8
