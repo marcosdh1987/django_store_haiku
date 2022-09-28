@@ -7,10 +7,9 @@ from django_countries.fields import CountryField
 
 
 CATEGORY_CHOICES = (
-    ('J', 'Jabones'),
-    ('C', 'Cremas'),
-    ('S', 'Shampoo'),
-    ('E', 'Emulsiones')
+    ('V', 'Placa de Video'),
+    ('C', 'Combos'),
+    ('A', 'Accesorios')
 )
 
 

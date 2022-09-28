@@ -246,7 +246,7 @@ class PedidoView(TemplateView):
             subject='Mensaje de usuario',
             body=body,
             from_email=email,
-            to=[email,'haiku.cosmeticanatural@gmail.com'],
+            to=[email,'hardwarestore444@gmail.com'],
         )
         email_message.content_subtype = 'html'
         email_message.send()
@@ -403,21 +403,21 @@ class HomeView(ListView):
     paginate_by = 10
     template_name = "home.html"
 
-class JabonesView(ListView):
+class vgaView(ListView):
     model = Item
     paginate_by = 10
-    template_name = "jabones.html"
+    template_name = "vga.html"
 
-class CremasView(ListView):
+class combosView(ListView):
     model = Item
     paginate_by = 10
-    template_name = "cremas.html"
+    template_name = "combos.html"
 
 
-class ShampooView(ListView):
+class accesoriosView(ListView):
     model = Item
     paginate_by = 10
-    template_name = "shampoo.html"
+    template_name = "accesorios.html"
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
