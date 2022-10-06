@@ -14,11 +14,11 @@ The website displays products. Users can add and remove products to/from their c
 
 -- Build the image into a conteiner
 
-docker build -t storename .
+docker build -t "storename" .
 
 -- run the conteiner 
 
-docker run -dp <externalPort>:<internalPort>
+docker run -dp "externalPort":"internalPort"
 
 ## Local Usage
 
