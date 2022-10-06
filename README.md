@@ -10,6 +10,18 @@ The website displays products. Users can add and remove products to/from their c
 
 ## Running this project
 
+## Using Docker
+
+-- Build the image into a conteiner
+
+docker build -t storename .
+
+-- run the conteiner 
+
+docker run -dp <externalPort>:<internalPort>
+
+## Local Usage
+
 To get this project up and running you should start by having Python installed on your computer. It's advised you create a virtual environment to store your projects dependencies separately. You can install virtualenv with
 
 ```
