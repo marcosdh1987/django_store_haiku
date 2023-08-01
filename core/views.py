@@ -246,7 +246,7 @@ class PedidoView(TemplateView):
             subject='Mensaje de usuario',
             body=body,
             from_email=email,
-            to=[email,'hardwarestore444@gmail.com'],
+            to=[email,'marcos.esteban.soto@gmail.com'],
         )
         email_message.content_subtype = 'html'
         email_message.send()
