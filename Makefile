@@ -61,7 +61,7 @@ local-build:
 	@docker build -t ${LAMBDA} .
 
 run:
-	@docker run -d -p 8000:8000  ${LAMBDA}
+	@docker run -d -p 80:8000  ${LAMBDA}
 
 
 mac-run:
